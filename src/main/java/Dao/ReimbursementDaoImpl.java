@@ -36,14 +36,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             String sql="SELECT * FROM ers_reimbursement;";
             PreparedStatement ps=conn.prepareStatement(sql);
 
-            ResultSet rs= ps.getResultSet();;
+            ResultSet rs= ps.getResultSet();
 
             System.out.println(rs);
 
             while(rs.next()){
                 reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
             }
-            logger.info("getAllReimbursements " +reimbursements.toString());
+            logger.info("getAllReimbursements " +reimbursements);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -66,7 +66,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursement=new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10));
             }
-            logger.info("getOneReimbursement" +reimbursement.toString());
+            logger.info("getOneReimbursement" +reimbursement);
 
 
         }catch (SQLException e){
@@ -88,7 +88,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             ps.setInt(5,reimbursement.getType_id());
 
             ps.executeUpdate();
-            logger.info("createReimbursement()" +reimbursement.toString());
+            logger.info("createReimbursement()" +reimbursement);
 
 
 
@@ -99,10 +99,37 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
     @Override
     public void updateAReimbursement(Integer reimbursement_id, Integer reimbursement_status_id) {
 
+        try (Connection conn=DriverManager.getConnection(url,username,password)){
+            String sql ="UPDATE ers_reimbursement SET reimb_status_id =2 WHERE reimb_id =?;";
+
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setInt(1,reimbursement_id);
+
+            ps.executeUpdate();
+
+            logger.info("updateReimbursement() the new reimbursement_status_id is " +reimbursement_status_id);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+
     }
 
     @Override
     public void deleteAReimbursement(Integer reimbursement_id) {
+        try(Connection conn = DriverManager.getConnection(url,username,password)){
+
+            String sql="delete FROM ers_reimbursement WHERE reimb_id =?;";
+
+            PreparedStatement ps=conn.prepareStatement(sql);
+
+            ps.setInt(1,reimbursement_id);
+
+            ps.executeUpdate();
+
+            logger.info("deleteAReimbursement id " + reimbursement_id);
+
+
+        }catch (SQLException e){logger.error(e);}
 
     }
 }
