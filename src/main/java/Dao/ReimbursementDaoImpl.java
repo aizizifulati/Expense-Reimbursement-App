@@ -49,6 +49,9 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
         }
         return reimbursements;
     }
+    // TODO: 12/11/2021 fix H2 create table
+    // TODO: 12/11/2021 create the tests
+
 
     @Override
     public Reimbursement getOneReimbursement(Integer reimbursement_id) {

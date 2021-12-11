@@ -29,17 +29,22 @@ class UserDaoImplTest {
 //    }
 
     @Test
+
     void getAllUsers() {
+        H2Util.createTable();
         List<User> actualResult=userDao.getAllUsers();
-//        System.out.println(actualResult.toString());
+        System.out.println(actualResult.toString());
+        H2Util.dropTable();
 
 
     }
 
     @Test
     void getOneUser() {
+        H2Util.createTable();
         User actualResult=userDao.getOneUser(1);
-//        System.out.println(actualResult.toString());
+        System.out.println(actualResult.toString());
+        H2Util.dropTable();
     }
 
     @Test
@@ -53,7 +58,7 @@ class UserDaoImplTest {
     @Test
     void updateAUser() {
         userDao.updateAUser(0,"fenix0","updatedPass");
-        System.out.println(userDao.getOneUser(0).toString());;
+        System.out.println(userDao.getOneUser(0).toString());
     }
 
 
