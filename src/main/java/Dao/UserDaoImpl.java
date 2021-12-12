@@ -143,4 +143,26 @@ public class UserDaoImpl implements UserDao {
 
 
     }
+
+    @Override
+    public User getOneUserByUsername(String username) {
+        User user=null;
+
+        try(Connection conn=DriverManager.getConnection(url,username,password)){
+
+            String sql="SELECT * FROM ers_users WHERE ers_users_id =?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1,user_id);
+
+            ResultSet rs= ps.executeQuery();
+
+            while(rs.next()){
+                user=new User(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7));
+            }
+            logger.info("getOneUser() " +user.toString());
+        }catch (SQLException e){
+            logger.error(e);
+        }
+    }
 }
