@@ -1,6 +1,7 @@
 package controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dto.UserDTO;
 import models.User;
 import services.UserService;
 import io.javalin.http.Context;
@@ -48,6 +49,18 @@ public class UserController {
         userService.deleteAUser(user_id);
 
     }
+
+    public User getOneUserByUsername(String user_name){
+        return userService.getOneUserByUsername(user_name);
+    }
+
+    public Boolean loginValidation(UserDTO userDTO){
+        return userService.loginValidation(userDTO);
+    }
+    public User getOneUserByUsernameAndPassword(String user_name,String user_password){
+        return userService.getOneUserByUsernameAndPassword(user_name,user_password);
+    }
+
 
 
 }

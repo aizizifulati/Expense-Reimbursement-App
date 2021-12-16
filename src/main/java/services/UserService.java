@@ -2,12 +2,15 @@ package services;
 
 import Dao.UserDao;
 import Dao.UserDaoImpl;
+import dto.UserDTO;
+import Dao.UserDTODao;
 import models.User;
 
 import java.util.List;
 
 public class UserService {
     UserDao userDao;
+    UserDTODao userDTODao;
 
     public UserService(UserDao userDao){
         this.userDao=userDao;
@@ -37,6 +40,16 @@ public class UserService {
         userDao.deleteAUser(user_id);
     }
 
+    public User getOneUserByUsername(String user_name){
+
+        return userDao.getOneUserByUsername(user_name);}
+
+    public Boolean loginValidation(UserDTO userDTO){
+        return userDTODao.loginValidation(userDTO);
+    }
+    public User getOneUserByUsernameAndPassword(String user_name,String user_password){
+        return userDao.getOneUserByUsernameAndPassword(user_name,user_password);
+    }
 
 
 

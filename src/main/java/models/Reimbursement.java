@@ -55,14 +55,26 @@ public class Reimbursement {
         this.Id = id;
         this.Amount = amount;
         this.Submitted = Timestamp.from(Instant.now());
-        this.Resolved = null;
+        this.Resolved = resolved;
         this.Description = description;
         this.receipt = receipt;
         this.author = author;
-        this.resolver = null;
-        this.status_id = 1;
+        this.resolver = resolver;
+        this.status_id = status_id;
         this.type_id = type_id;
     }
+
+    public Reimbursement(Integer id ,Integer amount, Timestamp submitted, String description, Integer author, Integer status_id, Integer type_id) {
+        Id=id;
+        Amount = amount;
+        Submitted = submitted;
+        Description = description;
+        this.author = author;
+        this.status_id = status_id;
+        this.type_id = type_id;
+    }
+
+
 
     public Integer getId() {
         return Id;

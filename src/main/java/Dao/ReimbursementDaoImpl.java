@@ -36,7 +36,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             String sql="SELECT * FROM ers_reimbursement;";
             PreparedStatement ps=conn.prepareStatement(sql);
 
-            ResultSet rs= ps.getResultSet();
+            ResultSet rs= ps.executeQuery();
 
             System.out.println(rs);
 
@@ -123,6 +123,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
             String sql="delete FROM ers_reimbursement WHERE reimb_id =?;";
 
+
+
             PreparedStatement ps=conn.prepareStatement(sql);
 
             ps.setInt(1,reimbursement_id);
@@ -135,4 +137,95 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
         }catch (SQLException e){logger.error(e);}
 
     }
+
+    @Override
+    public List<Reimbursement> getAllReimbursementsByuser_id(Integer user_id) {
+        List<Reimbursement> reimbursements=new ArrayList<>();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password)){
+            String sql="SELECT * FROM ers_reimbursement WHERE reimb_author =?;";
+            PreparedStatement ps=conn.prepareStatement(sql);
+
+            ps.setInt(1,user_id);
+
+            ResultSet rs= ps.executeQuery();
+
+            System.out.println(rs);
+
+            while(rs.next()){
+                reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
+            }
+            logger.info("getAllReimbursementsbyUser id " +reimbursements);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+        return reimbursements;
+    }
+
+    @Override
+    public List<Reimbursement> getAllReimbursementsByUsername(String username) {
+        return null;
+    }
+
+    @Override
+    public List<Reimbursement> getAllUnresolvedReimbursements() {
+        List<Reimbursement> reimbursements=new ArrayList<>();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password)){
+            String sql="SELECT * FROM ers_reimbursement WHERE reimb_status_id =1;";
+            PreparedStatement ps=conn.prepareStatement(sql);
+
+            ResultSet rs= ps.executeQuery();
+
+            System.out.println(rs);
+
+            while(rs.next()){
+                reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
+            }
+            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+        return reimbursements;
+
+    }
+
+
+
+    @Override
+    public void approveAReimbursement(Integer reimbursement_id,Timestamp resolved,Integer resolver) {
+        try (Connection conn=DriverManager.getConnection(url,username,password)){
+            String sql ="UPDATE ers_reimbursement SET reimb_status_id =2,reimb_resolver=?,reimb_resolved=? WHERE reimb_id =?;";
+
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setInt(1,resolver);
+            ps.setTimestamp(2,resolved);
+            ps.setInt(3,reimbursement_id);
+            ps.executeUpdate();
+
+            logger.info("approveAReimbursement of id : " + reimbursement_id);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+    }
+
+    @Override
+    public void denyAReimbursement(Integer reimbursement_id, Timestamp resolved,Integer resolver) {
+        try (Connection conn=DriverManager.getConnection(url,username,password)){
+            String sql ="UPDATE ers_reimbursement SET reimb_status_id =3,reimb_resolver=?,reimb_resolved=? WHERE reimb_id =?;";
+
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setInt(1,resolver);
+            ps.setTimestamp(2,resolved);
+            ps.setInt(3,reimbursement_id);
+
+            ps.executeUpdate();
+
+            logger.info("denyAReimbursement of id : " + reimbursement_id);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+
+    }
 }
+

@@ -10,5 +10,6 @@ public interface UserDao {
     void createUser(User user);
     void updateAUser(Integer user_id,String user_name,String pass_word);
     void deleteAUser(Integer user_id);
-    User getOneUserByUsername(String username);
+    User getOneUserByUsername(String user_name);
+    User getOneUserByUsernameAndPassword(String user_name,String user_password);
 }

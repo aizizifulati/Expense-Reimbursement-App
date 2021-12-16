@@ -4,6 +4,7 @@ import Dao.ReimbursementDao;
 import Dao.ReimbursementDaoImpl;
 import models.Reimbursement;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ReimbursementService {
@@ -32,6 +33,20 @@ public class ReimbursementService {
 
     public void updateAReimbursement(Integer reimbursement_id, Integer reimbursement_status_id){
         reimbursementDao.updateAReimbursement(reimbursement_id,reimbursement_status_id);
+    }
+
+    public List<Reimbursement> getAllReimbursementsByuser_id(Integer user_id){
+       return reimbursementDao.getAllReimbursementsByuser_id(user_id);
+    }
+    public List<Reimbursement> getAllUnresolvedReimbursements(){
+        return reimbursementDao.getAllUnresolvedReimbursements();
+    }
+    public void approveAReimbursement(Integer reimbursement_id, Timestamp resolved, Integer resolver){
+        reimbursementDao.approveAReimbursement(reimbursement_id,resolved,resolver);
+    }
+
+    public void denyAReimbursement(Integer reimbursement_id, Timestamp resolved, Integer resolver){
+        reimbursementDao.denyAReimbursement(reimbursement_id,resolved,resolver);
     }
 
 

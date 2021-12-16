@@ -145,24 +145,51 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getOneUserByUsername(String username) {
+    public User getOneUserByUsername(String user_name) {
         User user=null;
 
         try(Connection conn=DriverManager.getConnection(url,username,password)){
 
-            String sql="SELECT * FROM ers_users WHERE ers_users_id =?;";
+            String sql="SELECT * FROM ers_users WHERE ers_username =?;";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setInt(1,user_id);
+            ps.setString(1,user_name);
 
             ResultSet rs= ps.executeQuery();
 
             while(rs.next()){
                 user=new User(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7));
             }
-            logger.info("getOneUser() " +user.toString());
+            logger.info("getOneUserByUsername() ");
         }catch (SQLException e){
             logger.error(e);
         }
+        return user;
     }
+
+    @Override
+    public User getOneUserByUsernameAndPassword(String user_name, String user_password) {
+        User user=null;
+        try(Connection conn=DriverManager.getConnection(url,username,password)){
+            String sql="SELECT * FROM ers_users WHERE ers_username =? AND ers_password =?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,user_name);
+            ps.setString(2,user_password);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                user=new User(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7));
+            }
+
+            if(user!=null){}
+            logger.info("getOneUserByUsernameAndPassword() " );
+        }catch (SQLException e){
+            logger.error(e);
+
+
+
+        }
+
+        return user;
+    }
+
 }

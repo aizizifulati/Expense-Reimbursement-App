@@ -11,6 +11,7 @@ public class User {
     private String last_name;
     private String email;
     private Integer role_id;
+
     org.apache.log4j.Logger logger = Logger.getLogger(User.class);
     public User() {
     }
