@@ -143,7 +143,9 @@ public class Dispatcher {
 
 //            System.out.println(fileByteArray);
             //Reimbursement(Integer amount, Timestamp submitted, String description, Integer author, Integer status_id, Integer type_id)
-            Reimbursement reimbursement=new Reimbursement(0,amount,new Timestamp(System.currentTimeMillis()),description,user.getUser_id(),1,type_id);
+            Timestamp non = new Timestamp(System.currentTimeMillis());
+//            Reimbursement reimbursement=new Reimbursement(0,amount,new Timestamp(System.currentTimeMillis()),description,user.getUser_id(),1,type_id);
+            Reimbursement reimbursement=new Reimbursement(0,amount,new Timestamp(System.currentTimeMillis()),non,2,description,user.getUser_id(),1,type_id);
             System.out.println("Description : "+description + "Amount : " +amount +"Type_od : "+type_id+"user info : "+user+" new reimburse : "+reimbursement);
             reimbursementController.createReimbursement(reimbursement);
 

@@ -59,7 +59,7 @@ window.addEventListener("load", async () => {
             <span class="rem_status_id">Status :${status_id_show}</span>
             <span class="rem_type_id">Type :${type_id_show}</span>
             <span class="rem_type_id">Resolved By :${rem.resolver}</span>
-            <span class="rem_type_id">Resolved Time :${rem.resolved?new Date(rem.resolved):null}</span>
+            <span class="rem_type_id">Resolved Time :${rem.status_id==1?null:new Date(rem.resolved)}</span>
         </div>
         `
         remContainer.appendChild(remItemElem);
