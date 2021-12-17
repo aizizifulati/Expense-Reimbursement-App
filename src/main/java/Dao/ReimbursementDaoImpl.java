@@ -81,14 +81,17 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
     public void createReimbursement(Reimbursement reimbursement) {
         try(Connection conn =DriverManager.getConnection(url,username,password)){
             String sql="INSERT INTO ers_reimbursement (reimb_id,reimb_amount,reimb_submitted,reimb_resolved,reimb_description,reimb_receipt,reimb_author,reimb_resolver,reimb_status_id,reimb_type_id)\n" +
-                    "VALUES(DEFAULT,?,current_timestamp,DEFAULT,?,DEFAULT,?,DEFAULT,?,?);";
+                    "VALUES(DEFAULT,?,?,?,?,DEFAULT,?,?,?,?);";
 
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setInt(1,reimbursement.getAmount());
-            ps.setString(2,reimbursement.getDescription());
-            ps.setInt(3,reimbursement.getAuthor());
-            ps.setInt(4,reimbursement.getStatus_id());
-            ps.setInt(5,reimbursement.getType_id());
+            ps.setTimestamp(2,reimbursement.getSubmitted());
+            ps.setTimestamp(3,reimbursement.getResolved());
+            ps.setString(4,reimbursement.getDescription());
+            ps.setInt(5,reimbursement.getAuthor());
+            ps.setInt(6,reimbursement.getResolver());
+            ps.setInt(7,reimbursement.getStatus_id());
+            ps.setInt(8,reimbursement.getType_id());
 
             ps.executeUpdate();
             logger.info("createReimbursement()" +reimbursement);

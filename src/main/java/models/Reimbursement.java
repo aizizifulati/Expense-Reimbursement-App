@@ -54,7 +54,7 @@ public class Reimbursement {
     public Reimbursement(Integer id, Integer amount, Timestamp submitted, Timestamp resolved, String description, byte[] receipt, Integer author, Integer resolver, Integer status_id, Integer type_id) {
         this.Id = id;
         this.Amount = amount;
-        this.Submitted = Timestamp.from(Instant.now());
+        this.Submitted = submitted;
         this.Resolved = resolved;
         this.Description = description;
         this.receipt = receipt;
@@ -72,6 +72,17 @@ public class Reimbursement {
         this.author = author;
         this.status_id = status_id;
         this.type_id = type_id;
+    }
+    public Reimbursement(Integer id ,Integer amount, Timestamp submitted, Timestamp resolved,Integer resolver,String description, Integer author, Integer status_id, Integer type_id){
+    Id=id;
+    Amount=amount;
+    Submitted=submitted;
+    Resolved=resolved;
+    this.resolver=resolver;
+    Description=description;
+    this.author=author;
+    this.status_id=status_id;
+    this.type_id=type_id;
     }
 
 
