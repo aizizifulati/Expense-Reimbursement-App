@@ -69,7 +69,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursement=new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10));
             }
-            logger.info("getOneReimbursement" +reimbursement);
+            logger.info("get One Reimbursement" +reimbursement);
 
 
         }catch (SQLException e){
@@ -158,7 +158,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
             }
-            logger.info("getAllReimbursementsbyUser id " +reimbursements);
+            logger.info("get all reimbursementsby user id " +reimbursements);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -185,7 +185,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
             }
-            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+            logger.info("get all pending Reimbursements " +reimbursements);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -206,7 +206,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             ps.setInt(3,reimbursement_id);
             ps.executeUpdate();
 
-            logger.info("approveAReimbursement of id : " + reimbursement_id);
+            logger.info("approve a reimbursement of id : " + reimbursement_id);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -224,7 +224,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
             ps.executeUpdate();
 
-            logger.info("denyAReimbursement of id : " + reimbursement_id);
+            logger.info("deny a reimbursement of id : " + reimbursement_id);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -246,7 +246,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
             }
-            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+            logger.info("get all approved reimbursements " +reimbursements);
         }catch (SQLException e){
             logger.error(e);
         }
@@ -268,7 +268,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
             while(rs.next()){
                 reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
             }
-            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+            logger.info("get all denied reimbursements " +reimbursements);
         }catch (SQLException e){
             logger.error(e);
         }
