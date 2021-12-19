@@ -3,7 +3,7 @@ window.onload = async () => {
     let result = await response.json();
     if(!result.successful)
     window.location.href = "../"
-    console.log(result.data)
+    // console.log(response)
 
 
     switch (result.data.role_id){

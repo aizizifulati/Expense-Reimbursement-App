@@ -1,4 +1,5 @@
 let logout=document.getElementById("logout-btn");
+
 logout.addEventListener("click",function(){ let response = fetch("http://localhost:9000/api/logout",{
     method:"DELETE"
 },
@@ -27,6 +28,12 @@ async function createNew(e){
         method:"POST",
         body:data
     })
+
+    console.log(response)
+    if (response.headers.status=200){
+        window.alert("you have created a new Reimbursement !");
+        window.location.href="../employee-reimbursments"
+    }
     
     
 

@@ -18,5 +18,8 @@ public interface ReimbursementDao {
     List<Reimbursement> getAllUnresolvedReimbursements();
     void approveAReimbursement(Integer reimbursement_id, Timestamp resolved,Integer resolver);
     void denyAReimbursement(Integer reimbursement_id,Timestamp resolved,Integer resolver);
+    List<Reimbursement> getAllApprovedReimbursements();
+    List<Reimbursement> getAllDeniedReimbursements();
+
 
 }

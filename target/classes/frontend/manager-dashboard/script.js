@@ -5,6 +5,11 @@ window.onload = async () => {
     window.location.href = "../"
     console.log(result.data)
 
+    if(result.data.role_id==1)
+    window.location.href = "../employee-dashboard"
+
+    
+
     switch (result.data.role_id){
         case 1:
             role_id_show="Employee"
@@ -53,11 +58,21 @@ window.onload = async () => {
     
     )})
 
-    let myrem=document.getElementById("rem-btn");
-    myrem.addEventListener("click",function(){ 
-    window.location.href="../employee-reimbursments"
+    // let myrem=document.getElementById("rem-btn");
+    // myrem.addEventListener("click",function(){ 
+    // window.location.href="../employee-reimbursments"
+    
+    // })
+
+    let approved=document.getElementById("approved-btn");
+    approved.addEventListener("click",function(){ 
+    window.location.href="../manager-approved"
     
     })
+
+    
+    
+  
 
 
 

@@ -44,9 +44,7 @@ public class UserService {
 
         return userDao.getOneUserByUsername(user_name);}
 
-    public Boolean loginValidation(UserDTO userDTO){
-        return userDTODao.loginValidation(userDTO);
-    }
+
     public User getOneUserByUsernameAndPassword(String user_name,String user_password){
         return userDao.getOneUserByUsernameAndPassword(user_name,user_password);
     }

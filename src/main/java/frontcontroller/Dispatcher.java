@@ -60,7 +60,7 @@ public class Dispatcher {
                     context.sessionAttribute("user-session",user);
                     context.json(new JsonResponse(true, "login successful", user));
                 }
-                else{context.result("wrong pasword or username!!!!!!!!!!");}
+                else{context.status(400);}
 
 
 
@@ -150,6 +150,8 @@ public class Dispatcher {
             reimbursementController.createReimbursement(reimbursement);
 
 
+
+
         });
         
         app.get("/api/unresolvedrequirements",context -> {
@@ -186,6 +188,27 @@ public class Dispatcher {
 //
        reimbursementController.denyAReimbursement(id,resolved, resolver);
             System.out.println("id :" + id+"timestamp : " +resolved+"resolver  :" +resolver);
+        });
+
+
+        app.get("/api/getAllApproved",context -> {
+            context.contentType("application/json");
+
+
+            List<Reimbursement> reimbursements= reimbursementController.getAllApprovedReimbursements();
+            context.json(new JsonResponse(true, "login successful", reimbursements));
+            System.out.println(reimbursements);
+
+        });
+
+        app.get("/api/getAllDenied",context -> {
+            context.contentType("application/json");
+
+
+            List<Reimbursement> reimbursements= reimbursementController.getAllDeniedReimbursements();
+            context.json(new JsonResponse(true, "login successful", reimbursements));
+            System.out.println(reimbursements);
+
         });
 
 

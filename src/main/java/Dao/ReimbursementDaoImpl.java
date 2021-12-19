@@ -230,5 +230,49 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
         }
 
     }
+
+    @Override
+    public List<Reimbursement> getAllApprovedReimbursements() {
+        List<Reimbursement> reimbursements=new ArrayList<>();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password)){
+            String sql="SELECT * FROM ers_reimbursement WHERE reimb_status_id =2;";
+            PreparedStatement ps=conn.prepareStatement(sql);
+
+            ResultSet rs= ps.executeQuery();
+
+            System.out.println(rs);
+
+            while(rs.next()){
+                reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
+            }
+            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+        return reimbursements;
+    }
+
+    @Override
+    public List<Reimbursement> getAllDeniedReimbursements() {
+        List<Reimbursement> reimbursements=new ArrayList<>();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password)){
+            String sql="SELECT * FROM ers_reimbursement WHERE reimb_status_id =3;";
+            PreparedStatement ps=conn.prepareStatement(sql);
+
+            ResultSet rs= ps.executeQuery();
+
+            System.out.println(rs);
+
+            while(rs.next()){
+                reimbursements.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getTimestamp(3),rs.getTimestamp(4),rs.getString(5),rs.getBytes(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10)));
+            }
+            logger.info("getAllUnresolvedReimbursements " +reimbursements);
+        }catch (SQLException e){
+            logger.error(e);
+        }
+        return reimbursements;
+    }
 }
 

@@ -1,0 +1,17 @@
+.new-reimbursement{  
+    display: flex;
+    border: 8px;
+    background-color: rgb(236, 194, 194);
+    margin: auto;
+    height: 500px;
+}
+
+#new-reimbursement-form{
+    justify-content: center;
+    border: 8px;
+    background-color: rgb(170, 223, 85);
+    padding: 20px;
+    height: 200px;
+    width: 600px;
+    margin: auto;
+}

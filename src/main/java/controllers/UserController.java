@@ -54,9 +54,9 @@ public class UserController {
         return userService.getOneUserByUsername(user_name);
     }
 
-    public Boolean loginValidation(UserDTO userDTO){
-        return userService.loginValidation(userDTO);
-    }
+//    public Boolean loginValidation(UserDTO userDTO){
+//        return userService.loginValidation(userDTO);
+//    }
     public User getOneUserByUsernameAndPassword(String user_name,String user_password){
         return userService.getOneUserByUsernameAndPassword(user_name,user_password);
     }

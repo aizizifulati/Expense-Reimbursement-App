@@ -1,10 +1,19 @@
 window.addEventListener("load", async () => {
     // let response = await fetch("http://localhost:9000/api/check-session");
     // let result = await response.json();
+    let response = await fetch("http://localhost:9000/api/check-session");
+    let result = await response.json();
+    if(!result.successful)
+    window.location.href = "../"
+    console.log(result.data)
+
+    if(result.data.role_id==1)
+    window.location.href = "../employee-dashboard"
 
 
-    let response=await fetch("http://localhost:9000/api/unresolvedrequirements");
-    let rt=await response.json();
+
+    let response1=await fetch("http://localhost:9000/api/unresolvedrequirements");
+    let rt=await response1.json();
 
     console.log(rt.data)
 
@@ -31,6 +40,7 @@ window.addEventListener("load", async () => {
                         break;
                     case 2:
                         status_id_show="Approved"
+                        break;
                     case 3:
                         status_id_show="Denied"
                         break;}

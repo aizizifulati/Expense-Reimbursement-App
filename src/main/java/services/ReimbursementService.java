@@ -41,6 +41,13 @@ public class ReimbursementService {
     public List<Reimbursement> getAllUnresolvedReimbursements(){
         return reimbursementDao.getAllUnresolvedReimbursements();
     }
+    public List<Reimbursement> getAllDeniedReimbursements(){
+        return reimbursementDao.getAllDeniedReimbursements();
+    }
+    public List<Reimbursement> getAllApprovedReimbursements(){
+        return reimbursementDao.getAllApprovedReimbursements();
+    }
+
     public void approveAReimbursement(Integer reimbursement_id, Timestamp resolved, Integer resolver){
         reimbursementDao.approveAReimbursement(reimbursement_id,resolved,resolver);
     }
@@ -48,6 +55,8 @@ public class ReimbursementService {
     public void denyAReimbursement(Integer reimbursement_id, Timestamp resolved, Integer resolver){
         reimbursementDao.denyAReimbursement(reimbursement_id,resolved,resolver);
     }
+
+
 
 
 }

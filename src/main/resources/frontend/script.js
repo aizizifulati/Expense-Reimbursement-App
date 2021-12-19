@@ -29,9 +29,16 @@ async function login(e){
         method:"POST",
         body:data
     })
+
+    if(response.status==400){ window.alert("Login username or password is not valid,please try again!!!!");}
+    console.log(response.status)
+    
     
 
     let result = await response.json();
+
+    
+    
 
     if(result.successful )
     {
@@ -45,8 +52,9 @@ async function login(e){
 
         }
         
+        
     
-    console.log("hello");
+    
     
     // if(result.data.role_id==1){window.location.href=`./employee-dashboard`}
     // else if(result.data.role_id==2){window.location.href=`./manager-dashboard`}
@@ -56,6 +64,7 @@ async function login(e){
             
 
     }
+     if(response.status==400){ window.alert("Login username or password is not valid,please try again!!!!");}
     
     
 

@@ -68,4 +68,11 @@ public class ReimbursementController {
         reimbursementService.denyAReimbursement(reimbursement_id,resolved,resolver);
     }
 
+    public List<Reimbursement> getAllApprovedReimbursements(){
+        return reimbursementService.getAllApprovedReimbursements();
+    }
+    public List<Reimbursement> getAllDeniedReimbursements(){
+        return reimbursementService.getAllDeniedReimbursements();
+    }
+
 }

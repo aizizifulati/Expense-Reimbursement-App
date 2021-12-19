@@ -1,0 +1,17 @@
+.login-form{  
+    display: flex;
+    border: 8px;
+    background-color: rgb(51, 41, 41);
+    margin: auto;
+    height: 500px;
+}
+
+#login-form{
+    justify-content: center;
+    border: 8px;
+    background-color: rgb(161, 122, 235);
+    padding: 20px;
+    height: 200px;
+    width: 600px;
+    margin: auto;
+}
